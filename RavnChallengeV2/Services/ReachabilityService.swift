@@ -37,4 +37,8 @@ final class ReachabilityService: ReachabilityServiceType {
         
         serviceStarted = true
     }
+    
+    static func make() -> ReachabilityService {
+        .init()
+    }
 }

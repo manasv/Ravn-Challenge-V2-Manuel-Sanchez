@@ -24,7 +24,6 @@ struct AllCharactersResponse {
 }
 
 protocol CharacterServiceType {
-    var client: NetworkClient { get }
     func allPeople(first: Int, after: String?) -> AnyPublisher<AllCharactersResponse, Error>
 }
 
