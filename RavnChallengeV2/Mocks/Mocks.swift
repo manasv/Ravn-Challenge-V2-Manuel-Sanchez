@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Mock {
+enum Mock { 
     static let starWarsCharacters = [
         StarWarsCharacter(id: "1",
                           name: "Character 1",
@@ -47,4 +47,20 @@ enum Mock {
                                                    species: "Human",
                                                    homeWorld: "Tatooine",
                                                    vehicles: ["Vehicle 1", "Vehicle 2"])
+    
+    static let allCharactersResponse = AllCharactersResponse(characters: [
+        AllPeopleQuery
+            .Data
+            .AllPerson
+            .Person(id: "1",
+                    name: "MockName",
+                    species: AllPeopleQuery.Data.AllPerson.Person.Species(id: "id", name: "Especies"),
+                    homeworld: AllPeopleQuery.Data.AllPerson.Person.Homeworld(id: "id", name: "Hometown"),
+                    eyeColor: "Green", hairColor: "Brown", skinColor: "Fair",
+                    birthYear: "1234DBF", vehicleConnection: nil)
+    ], pageInfo: AllPeopleQuery.Data.AllPerson.PageInfo(hasNextPage: true, endCursor: "endcursor"))
+}
+
+enum MockError: Error {
+    case genericError
 }
