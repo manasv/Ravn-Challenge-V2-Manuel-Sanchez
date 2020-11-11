@@ -22,7 +22,7 @@ struct StarWarsCharacter {
         if let species = species {
             return "\(species) from \(homeWorld)"
         } else {
-            return "from \(homeWorld)"
+            return "From \(homeWorld)"
         }
     }
 }

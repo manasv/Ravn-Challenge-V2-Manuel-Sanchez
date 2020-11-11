@@ -12,14 +12,27 @@ final class CharacterListViewModel: ObservableObject {
     @Published var state: State
     
     private let service: CharacterServiceType
+    private let reachability: ReachabilityServiceType
     private var subscriptions = Set<AnyCancellable>()
     
-    init(service: CharacterServiceType) {
+    init(service: CharacterServiceType, reachability: ReachabilityServiceType) {
         self.service = service
+        self.reachability = reachability
         self.state = State(response: AllCharactersResponse.initial, characters: [])
     }
     
     func fetchCharacters() {
+        if reachability.serviceStarted, reachability.networkIsReachable {
+            fetchAllCharacters()
+        } else if reachability.serviceStarted, !reachability.networkIsReachable {
+            state.loadDidFail()
+        } else {
+            reachability.configure()
+            fetchAllCharacters()
+        }
+    }
+    
+    private func fetchAllCharacters() {
         state.isLoading = true
         
         service
@@ -30,6 +43,8 @@ final class CharacterListViewModel: ObservableObject {
                 switch result {
                 case .failure(let error):
                     print(error.localizedDescription)
+                    print("Failed")
+                    self?.state.loadDidFail()
                 case .finished:
                     break
                 }
@@ -68,10 +83,11 @@ final class CharacterListViewModel: ObservableObject {
         
         self.state.characters.append(contentsOf: responseCharacters)
         self.state.response.pageInfo = response.pageInfo
+        self.state.loadingFailed = false
     }
     
     static func make() -> CharacterListViewModel {
-        .init(service: CharacterService.make())
+        .init(service: CharacterService.make(), reachability: ReachabilityService())
     }
 }
 
@@ -80,5 +96,11 @@ extension CharacterListViewModel {
         var response: AllCharactersResponse
         var characters: [StarWarsCharacter]
         var isLoading = false
+        var loadingFailed = false
+        
+        mutating func loadDidFail() {
+            isLoading = false
+            loadingFailed = true
+        }
     }
 }

@@ -25,7 +25,27 @@ struct CharacterListView: View {
                                 })
                         })
                 }
-            }.onAppear(perform: {
+
+                if viewModel.state.isLoading {
+                    LoadingView()
+                }
+                
+                if viewModel.state.loadingFailed {
+                    FailedLoadView()
+                        .onAppear(perform: {
+                            if viewModel.state.characters.isEmpty {
+                                viewModel.fetchCharacters()
+                            } else {
+                                guard let lastCharacter = viewModel.state.characters.last else {
+                                    return
+                                }
+                                
+                                viewModel.paginateIfPosible(after: lastCharacter)
+                            }
+                        })
+                }
+            }
+            .onAppear(perform: {
                 viewModel.fetchCharacters()
             })
             .navigationBarTitle("People", displayMode: .inline)
@@ -48,6 +68,30 @@ struct CharacterListElementView: View {
             Text(character.origin)
                 .textStyle(ParagraphLowEmphasisStyle())
         }.frame(height: 69)
+    }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            ProgressView()
+            
+            Text("Loading")
+                .textStyle(HeadingLowEmphasisStyle())
+            Spacer()
+        }
+    }
+}
+
+struct FailedLoadView: View {
+    var body: some View {
+        HStack(spacing: 16) {
+            Spacer()
+            Text("Failed to Load Data")
+                .textStyle(HeadingHighEmphasisStyle())
+            Spacer()
+        }
     }
 }
 

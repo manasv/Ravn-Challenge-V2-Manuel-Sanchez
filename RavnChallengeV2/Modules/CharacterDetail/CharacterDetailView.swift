@@ -19,7 +19,8 @@ struct CharacterDetailView: View {
                     CharacterDetailRowView(title: "Eye Color", value: viewModel.character.eyeColor)
                     CharacterDetailRowView(title: "Hair Color", value: viewModel.character.hairColor)
                     CharacterDetailRowView(title: "Skin Color", value: viewModel.character.skinColor)
-                    CharacterDetailRowView(title: "Birth Year", value: viewModel.character.birthYear)
+                    CharacterDetailRowView(title: "Birth Year", value: viewModel.character.birthYear,
+                                           capitalized: false)
                 }
                 
                 if let vehicles = viewModel.character.vehicles,
@@ -51,10 +52,12 @@ struct CharacterDetailSectionTitleView: View {
 struct CharacterDetailRowView: View {
     let title: String
     let value: String
+    let capitalized: Bool
     
-    init(title: String, value: String = "") {
+    init(title: String, value: String = "", capitalized: Bool = true) {
         self.title = title
         self.value = value
+        self.capitalized = capitalized
     }
     
     var body: some View {
@@ -69,7 +72,7 @@ struct CharacterDetailRowView: View {
                 if !value.isEmpty {
                     HStack {
                         Spacer()
-                        Text(value.capitalized)
+                        Text(capitalized ? value.capitalized : value)
                             .textStyle(HeadingStyle())
                     }
                 }
