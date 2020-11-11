@@ -26,3 +26,9 @@ App that retrieves and shows information for diverse characters in the StarWars 
     * In case you use a physical device you may need to set a Team in project configuration.
 
 # Demo
+
+### Success
+![](https://raw.githubusercontent.com/manasv/Ravn-Challenge-V2-Manuel-Sanchez/create-readme/GIF/successLoad.gif)
+
+### Failure
+![](https://raw.githubusercontent.com/manasv/Ravn-Challenge-V2-Manuel-Sanchez/create-readme/GIF/failedToLoad.gif)
