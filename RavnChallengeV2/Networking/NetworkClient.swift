@@ -18,7 +18,7 @@ final class NetworkClient {
             self?.apolloClient.fetch(query: query) { result in
                 switch result {
                 case .success(let response):
-                    if let responseData = response.data  {
+                    if let responseData = response.data {
                         return promise(.success(responseData))
                     } else if let errors = response.errors {
                         let apiError = ApiError(errors: errors)
