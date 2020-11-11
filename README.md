@@ -28,7 +28,7 @@ App that retrieves and shows information for diverse characters in the StarWars 
 # Demo
 
 ### Success
-![](https://raw.githubusercontent.com/manasv/Ravn-Challenge-V2-Manuel-Sanchez/create-readme/GIF/successLoad.gif)
+![](GIF/successLoad.gif)
 
 ### Failure
-![](https://raw.githubusercontent.com/manasv/Ravn-Challenge-V2-Manuel-Sanchez/create-readme/GIF/failedToLoad.gif)
+![](GIF/failedToLoad.gif)
