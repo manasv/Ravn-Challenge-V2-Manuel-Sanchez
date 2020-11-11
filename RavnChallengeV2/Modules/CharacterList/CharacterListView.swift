@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct CharacterListView: View {
+    @ObservedObject var viewModel: CharacterListViewModel
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        LazyVStack {
+            ForEach(viewModel.state.response.characters, id: \.id) { character in
+                Text(character.name ?? "Nil")
+            }
+        }.onAppear(perform: {
+            viewModel.fetchCharacters()
+        })
     }
 }
 
 struct CharacterListView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterListView()
+        CharacterListView(viewModel: CharacterListViewModel.make())
     }
 }

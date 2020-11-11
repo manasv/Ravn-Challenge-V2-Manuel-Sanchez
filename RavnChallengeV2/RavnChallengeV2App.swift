@@ -11,7 +11,7 @@ import SwiftUI
 struct RavnChallengeV2App: App {
     var body: some Scene {
         WindowGroup {
-            CharacterListView()
+            CharacterListView(viewModel: CharacterListViewModel.make())
         }
     }
 }

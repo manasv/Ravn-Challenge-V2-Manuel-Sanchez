@@ -1,0 +1,12 @@
+query AllPeople($first: Int, $after: String) {
+  allPeople(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    people {
+        id
+        name
+    }
+  }
+}

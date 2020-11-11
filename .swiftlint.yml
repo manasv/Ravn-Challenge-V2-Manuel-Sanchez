@@ -13,6 +13,9 @@ disabled_rules: # rule identifiers to exclude from running
   - multiple_closures_with_trailing_closure
   - overridden_super_call
 
+excluded:
+  - RavnChallengeV2/Networking/GraphQL/API.swift
+
 opt_in_rules: # some rules are only opt-in
   - closure_spacing
   - implicit_return
