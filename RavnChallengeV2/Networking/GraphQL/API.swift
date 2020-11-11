@@ -14,8 +14,6 @@ public final class AllPeopleQuery: GraphQLQuery {
         pageInfo {
           __typename
           hasNextPage
-          hasPreviousPage
-          startCursor
           endCursor
         }
         people {
@@ -131,8 +129,6 @@ public final class AllPeopleQuery: GraphQLQuery {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("hasNextPage", type: .nonNull(.scalar(Bool.self))),
-            GraphQLField("hasPreviousPage", type: .nonNull(.scalar(Bool.self))),
-            GraphQLField("startCursor", type: .scalar(String.self)),
             GraphQLField("endCursor", type: .scalar(String.self)),
           ]
         }
@@ -143,8 +139,8 @@ public final class AllPeopleQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(hasNextPage: Bool, hasPreviousPage: Bool, startCursor: String? = nil, endCursor: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "PageInfo", "hasNextPage": hasNextPage, "hasPreviousPage": hasPreviousPage, "startCursor": startCursor, "endCursor": endCursor])
+        public init(hasNextPage: Bool, endCursor: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "PageInfo", "hasNextPage": hasNextPage, "endCursor": endCursor])
         }
 
         public var __typename: String {
@@ -163,26 +159,6 @@ public final class AllPeopleQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "hasNextPage")
-          }
-        }
-
-        /// When paginating backwards, are there more items?
-        public var hasPreviousPage: Bool {
-          get {
-            return resultMap["hasPreviousPage"]! as! Bool
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "hasPreviousPage")
-          }
-        }
-
-        /// When paginating backwards, the cursor to continue.
-        public var startCursor: String? {
-          get {
-            return resultMap["startCursor"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "startCursor")
           }
         }
 
