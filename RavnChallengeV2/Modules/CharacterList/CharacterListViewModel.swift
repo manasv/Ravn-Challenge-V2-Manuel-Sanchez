@@ -15,10 +15,12 @@ final class CharacterListViewModel: ObservableObject {
     private let reachability: ReachabilityServiceType
     private var subscriptions = Set<AnyCancellable>()
     
-    init(service: CharacterServiceType, reachability: ReachabilityServiceType) {
+    init(service: CharacterServiceType = CharacterService.make(),
+         reachability: ReachabilityServiceType = ReachabilityService.make(),
+         characters: [StarWarsCharacter] = []) {
         self.service = service
         self.reachability = reachability
-        self.state = State(response: AllCharactersResponse.initial, characters: [])
+        self.state = State(response: AllCharactersResponse.initial, characters: characters)
     }
     
     func fetchCharacters() {

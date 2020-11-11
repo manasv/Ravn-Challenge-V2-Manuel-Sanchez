@@ -86,8 +86,8 @@ struct CharacterDetailRowView: View {
     }
 }
 
-//struct CharacterDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CharacterDetailView()
-//    }
-//}
+struct CharacterDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        CharacterDetailView(viewModel: CharacterDetailViewModel(character: Mock.singleCharacter))
+    }
+}
