@@ -11,13 +11,43 @@ struct CharacterListView: View {
     @ObservedObject var viewModel: CharacterListViewModel
     
     var body: some View {
-        LazyVStack {
-            ForEach(viewModel.state.response.characters, id: \.id) { character in
-                Text(character.name ?? "Nil")
-            }
-        }.onAppear(perform: {
-            viewModel.fetchCharacters()
-        })
+        NavigationView {
+            List {
+                ForEach(viewModel.state.characters, id: \.id) { character in
+                    NavigationLink(
+                        destination: CharacterDetailView(
+                            viewModel: CharacterDetailViewModel(character: character)
+                        ),
+                        label: {
+                            CharacterListElementView(character: character)
+                                .onAppear(perform: {
+                                    viewModel.paginateIfPosible(after: character)
+                                })
+                        })
+                }
+            }.onAppear(perform: {
+                viewModel.fetchCharacters()
+            })
+            .navigationBarTitle("People", displayMode: .inline)
+            .modifier(
+                NavigationBarColor(backgroundColor: UIColor(named: ColorName.ravnBlack) ?? .black,
+                                   tintColor: .white)
+            )
+        }
+    }
+}
+
+struct CharacterListElementView: View {
+    let character: StarWarsCharacter
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(character.name)
+                .textStyle(HeadingStyle())
+            
+            Text(character.origin)
+                .textStyle(ParagraphLowEmphasisStyle())
+        }.frame(height: 69)
     }
 }
 
