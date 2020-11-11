@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64478E3A255B5AB4004FB111 /* RavnChallengeV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64478E39255B5AB4004FB111 /* RavnChallengeV2App.swift */; };
-		64478E3C255B5AB4004FB111 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64478E3B255B5AB4004FB111 /* ContentView.swift */; };
+		64478E3C255B5AB4004FB111 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64478E3B255B5AB4004FB111 /* CharacterListView.swift */; };
 		64478E3E255B5AB6004FB111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64478E3D255B5AB6004FB111 /* Assets.xcassets */; };
 		64478E41255B5AB6004FB111 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64478E40255B5AB6004FB111 /* Preview Assets.xcassets */; };
 		64478E4C255B5AB6004FB111 /* RavnChallengeV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64478E4B255B5AB6004FB111 /* RavnChallengeV2Tests.swift */; };
@@ -35,7 +35,7 @@
 /* Begin PBXFileReference section */
 		64478E36255B5AB4004FB111 /* RavnChallengeV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RavnChallengeV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64478E39255B5AB4004FB111 /* RavnChallengeV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RavnChallengeV2App.swift; sourceTree = "<group>"; };
-		64478E3B255B5AB4004FB111 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		64478E3B255B5AB4004FB111 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		64478E3D255B5AB6004FB111 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64478E40255B5AB6004FB111 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		64478E42255B5AB6004FB111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,10 +95,9 @@
 		64478E38255B5AB4004FB111 /* RavnChallengeV2 */ = {
 			isa = PBXGroup;
 			children = (
+				64478E6B255B6CF3004FB111 /* SupportingFiles */,
+				64478E6C255B6D33004FB111 /* Modules */,
 				64478E39255B5AB4004FB111 /* RavnChallengeV2App.swift */,
-				64478E3B255B5AB4004FB111 /* ContentView.swift */,
-				64478E3D255B5AB6004FB111 /* Assets.xcassets */,
-				64478E42255B5AB6004FB111 /* Info.plist */,
 				64478E3F255B5AB6004FB111 /* Preview Content */,
 			);
 			path = RavnChallengeV2;
@@ -128,6 +127,39 @@
 				64478E58255B5AB7004FB111 /* Info.plist */,
 			);
 			path = RavnChallengeV2UITests;
+			sourceTree = "<group>";
+		};
+		64478E6B255B6CF3004FB111 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				64478E3D255B5AB6004FB111 /* Assets.xcassets */,
+				64478E42255B5AB6004FB111 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		64478E6C255B6D33004FB111 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				64478E71255B6DAB004FB111 /* CharacterList */,
+				64478E72255B6DB3004FB111 /* CharacterDetail */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		64478E71255B6DAB004FB111 /* CharacterList */ = {
+			isa = PBXGroup;
+			children = (
+				64478E3B255B5AB4004FB111 /* CharacterListView.swift */,
+			);
+			path = CharacterList;
+			sourceTree = "<group>";
+		};
+		64478E72255B6DB3004FB111 /* CharacterDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CharacterDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,7 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64478E3C255B5AB4004FB111 /* ContentView.swift in Sources */,
+				64478E3C255B5AB4004FB111 /* CharacterListView.swift in Sources */,
 				64478E3A255B5AB4004FB111 /* RavnChallengeV2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +474,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RavnChallengeV2/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RavnChallengeV2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RavnChallengeV2/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -463,7 +495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RavnChallengeV2/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RavnChallengeV2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RavnChallengeV2/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
