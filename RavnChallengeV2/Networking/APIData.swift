@@ -10,6 +10,7 @@ import Apollo
 
 enum API {
     static let baseURL: URL = URL(string: "https://swapi-graphql.netlify.app/.netlify/functions/index")!
+    static let numberOfCharacters = 5
 }
 
 struct ApiError: Error {
