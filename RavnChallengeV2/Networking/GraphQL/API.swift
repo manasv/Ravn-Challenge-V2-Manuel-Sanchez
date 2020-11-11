@@ -20,6 +20,28 @@ public final class AllPeopleQuery: GraphQLQuery {
           __typename
           id
           name
+          species {
+            __typename
+            id
+            name
+          }
+          homeworld {
+            __typename
+            id
+            name
+          }
+          eyeColor
+          hairColor
+          skinColor
+          birthYear
+          vehicleConnection {
+            __typename
+            vehicles {
+              __typename
+              id
+              name
+            }
+          }
         }
       }
     }
@@ -181,6 +203,13 @@ public final class AllPeopleQuery: GraphQLQuery {
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
             GraphQLField("name", type: .scalar(String.self)),
+            GraphQLField("species", type: .object(Species.selections)),
+            GraphQLField("homeworld", type: .object(Homeworld.selections)),
+            GraphQLField("eyeColor", type: .scalar(String.self)),
+            GraphQLField("hairColor", type: .scalar(String.self)),
+            GraphQLField("skinColor", type: .scalar(String.self)),
+            GraphQLField("birthYear", type: .scalar(String.self)),
+            GraphQLField("vehicleConnection", type: .object(VehicleConnection.selections)),
           ]
         }
 
@@ -190,8 +219,8 @@ public final class AllPeopleQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, name: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Person", "id": id, "name": name])
+        public init(id: GraphQLID, name: String? = nil, species: Species? = nil, homeworld: Homeworld? = nil, eyeColor: String? = nil, hairColor: String? = nil, skinColor: String? = nil, birthYear: String? = nil, vehicleConnection: VehicleConnection? = nil) {
+          self.init(unsafeResultMap: ["__typename": "Person", "id": id, "name": name, "species": species.flatMap { (value: Species) -> ResultMap in value.resultMap }, "homeworld": homeworld.flatMap { (value: Homeworld) -> ResultMap in value.resultMap }, "eyeColor": eyeColor, "hairColor": hairColor, "skinColor": skinColor, "birthYear": birthYear, "vehicleConnection": vehicleConnection.flatMap { (value: VehicleConnection) -> ResultMap in value.resultMap }])
         }
 
         public var __typename: String {
@@ -220,6 +249,278 @@ public final class AllPeopleQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        /// The species that this person belongs to, or null if unknown.
+        public var species: Species? {
+          get {
+            return (resultMap["species"] as? ResultMap).flatMap { Species(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "species")
+          }
+        }
+
+        /// A planet that this person was born on or inhabits.
+        public var homeworld: Homeworld? {
+          get {
+            return (resultMap["homeworld"] as? ResultMap).flatMap { Homeworld(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "homeworld")
+          }
+        }
+
+        /// The eye color of this person. Will be "unknown" if not known or "n/a" if the
+        /// person does not have an eye.
+        public var eyeColor: String? {
+          get {
+            return resultMap["eyeColor"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "eyeColor")
+          }
+        }
+
+        /// The hair color of this person. Will be "unknown" if not known or "n/a" if the
+        /// person does not have hair.
+        public var hairColor: String? {
+          get {
+            return resultMap["hairColor"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hairColor")
+          }
+        }
+
+        /// The skin color of this person.
+        public var skinColor: String? {
+          get {
+            return resultMap["skinColor"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "skinColor")
+          }
+        }
+
+        /// The birth year of the person, using the in-universe standard of BBY or ABY -
+        /// Before the Battle of Yavin or After the Battle of Yavin. The Battle of Yavin is
+        /// a battle that occurs at the end of Star Wars episode IV: A New Hope.
+        public var birthYear: String? {
+          get {
+            return resultMap["birthYear"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "birthYear")
+          }
+        }
+
+        public var vehicleConnection: VehicleConnection? {
+          get {
+            return (resultMap["vehicleConnection"] as? ResultMap).flatMap { VehicleConnection(unsafeResultMap: $0) }
+          }
+          set {
+            resultMap.updateValue(newValue?.resultMap, forKey: "vehicleConnection")
+          }
+        }
+
+        public struct Species: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Species"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+              GraphQLField("name", type: .scalar(String.self)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: GraphQLID, name: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Species", "id": id, "name": name])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The ID of an object
+          public var id: GraphQLID {
+            get {
+              return resultMap["id"]! as! GraphQLID
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          /// The name of this species.
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+        }
+
+        public struct Homeworld: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Planet"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+              GraphQLField("name", type: .scalar(String.self)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: GraphQLID, name: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Planet", "id": id, "name": name])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// The ID of an object
+          public var id: GraphQLID {
+            get {
+              return resultMap["id"]! as! GraphQLID
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          /// The name of this planet.
+          public var name: String? {
+            get {
+              return resultMap["name"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+        }
+
+        public struct VehicleConnection: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["PersonVehiclesConnection"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("vehicles", type: .list(.object(Vehicle.selections))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(vehicles: [Vehicle?]? = nil) {
+            self.init(unsafeResultMap: ["__typename": "PersonVehiclesConnection", "vehicles": vehicles.flatMap { (value: [Vehicle?]) -> [ResultMap?] in value.map { (value: Vehicle?) -> ResultMap? in value.flatMap { (value: Vehicle) -> ResultMap in value.resultMap } } }])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// A list of all of the objects returned in the connection. This is a convenience
+          /// field provided for quickly exploring the API; rather than querying for
+          /// "{ edges { node } }" when no edge data is needed, this field can be be used
+          /// instead. Note that when clients like Relay need to fetch the "cursor" field on
+          /// the edge to enable efficient pagination, this shortcut cannot be used, and the
+          /// full "{ edges { node } }" version should be used instead.
+          public var vehicles: [Vehicle?]? {
+            get {
+              return (resultMap["vehicles"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Vehicle?] in value.map { (value: ResultMap?) -> Vehicle? in value.flatMap { (value: ResultMap) -> Vehicle in Vehicle(unsafeResultMap: value) } } }
+            }
+            set {
+              resultMap.updateValue(newValue.flatMap { (value: [Vehicle?]) -> [ResultMap?] in value.map { (value: Vehicle?) -> ResultMap? in value.flatMap { (value: Vehicle) -> ResultMap in value.resultMap } } }, forKey: "vehicles")
+            }
+          }
+
+          public struct Vehicle: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["Vehicle"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+                GraphQLField("name", type: .scalar(String.self)),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(id: GraphQLID, name: String? = nil) {
+              self.init(unsafeResultMap: ["__typename": "Vehicle", "id": id, "name": name])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            /// The ID of an object
+            public var id: GraphQLID {
+              get {
+                return resultMap["id"]! as! GraphQLID
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "id")
+              }
+            }
+
+            /// The name of this vehicle. The common name, such as "Sand Crawler" or "Speeder
+            /// bike".
+            public var name: String? {
+              get {
+                return resultMap["name"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "name")
+              }
+            }
           }
         }
       }
