@@ -17,6 +17,7 @@
 		64478E81255B7197004FB111 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64478E80255B7197004FB111 /* NetworkClient.swift */; };
 		64478E89255B725A004FB111 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64478E88255B725A004FB111 /* APIData.swift */; };
 		64478E8F255B76A9004FB111 /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64478E8E255B76A9004FB111 /* CharacterService.swift */; };
+		6474A6F4255BBAFF00D16028 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474A6F3255BBAFF00D16028 /* CharacterListViewModel.swift */; };
 		64B37913255B87200052DB7B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B37912255B87200052DB7B /* schema.json */; };
 		64B37918255B87720052DB7B /* CharacterQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 64B37917255B87720052DB7B /* CharacterQuery.graphql */; };
 		64F266A8255B9AE700B477DF /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F266A7255B9AE700B477DF /* API.swift */; };
@@ -55,6 +56,7 @@
 		64478E80255B7197004FB111 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		64478E88255B725A004FB111 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 		64478E8E255B76A9004FB111 /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
+		6474A6F3255BBAFF00D16028 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		64B37912255B87200052DB7B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		64B37917255B87720052DB7B /* CharacterQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CharacterQuery.graphql; sourceTree = "<group>"; };
 		64F266A7255B9AE700B477DF /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				64478E3B255B5AB4004FB111 /* CharacterListView.swift */,
+				6474A6F3255BBAFF00D16028 /* CharacterListViewModel.swift */,
 			);
 			path = CharacterList;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				64478E8F255B76A9004FB111 /* CharacterService.swift in Sources */,
 				64478E3C255B5AB4004FB111 /* CharacterListView.swift in Sources */,
 				64478E3A255B5AB4004FB111 /* RavnChallengeV2App.swift in Sources */,
+				6474A6F4255BBAFF00D16028 /* CharacterListViewModel.swift in Sources */,
 				64478E89255B725A004FB111 /* APIData.swift in Sources */,
 				64F266A8255B9AE700B477DF /* API.swift in Sources */,
 				64478E81255B7197004FB111 /* NetworkClient.swift in Sources */,
